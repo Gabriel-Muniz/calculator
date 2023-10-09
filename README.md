@@ -7,3 +7,10 @@ I'm thinking of making the colors like a old gba style and also variables in css
 I also need to learn grid or think in a better way to make the buttons layout. Flex doesn't sound that good.
 
 Make a drawing mockup would be helpfull
+
+## Links to see later
+
+https://lospec.com/palette-list/hollow
+https://lospec.com/palette-list/dustbyte
+https://lospec.com/palette-list/rgr-papercut4
+https://lospec.com/palette-list/steampunk-4
