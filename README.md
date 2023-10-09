@@ -6,7 +6,9 @@ I'm thinking of making the colors like a old gba style and also variables in css
 
 I also need to learn grid or think in a better way to make the buttons layout. Flex doesn't sound that good.
 
-Make a drawing mockup would be helpfull
+Make a drawing mockup would be helpfull.
+
+Learn to style things like pixelart in css
 
 ## Links to see later
 
