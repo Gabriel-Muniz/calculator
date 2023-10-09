@@ -12,7 +12,7 @@ Learn to style things like pixelart in css
 
 ## Links to see later
 
-https://lospec.com/palette-list/hollow
-https://lospec.com/palette-list/dustbyte
-https://lospec.com/palette-list/rgr-papercut4
-https://lospec.com/palette-list/steampunk-4
+https://lospec.com/palette-list/hollow  
+https://lospec.com/palette-list/dustbyte  
+https://lospec.com/palette-list/rgr-papercut4  
+https://lospec.com/palette-list/steampunk-4  
