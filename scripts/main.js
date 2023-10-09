@@ -3,6 +3,21 @@ const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => num1/num2;
 
-let num1 = 0;
-let num2 = 0;
-let operator;
+const operate = (operator, num1, num2) => {
+    switch (operator) {
+        case "+":
+            return add(num1, num2);
+            break;
+        case "-":
+            return subtract(num1, num2);
+            break;
+        case "/":
+            return divide(num1, num2);
+            break;
+        case "*":
+            return multiply(num1, num2);
+            break;
+        default:
+            break;
+    }
+}
