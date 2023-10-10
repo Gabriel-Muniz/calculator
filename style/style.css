@@ -17,10 +17,14 @@
     background-color: beige;
 }
 .calc-btns{
-    display: flex;
-    flex-wrap: wrap;
-
-    justify-content: center;
+    display: grid;
+    grid-template-areas: 
+        "operations operations erase erase"
+        "nums nums nums operations"
+        "nums nums nums operations"
+        "nums nums nums equal"
+        "nums nums nums equal"
+    ;
 
     width: 80%;
     height: 60%;
@@ -30,4 +34,16 @@
 .num-btn{
     width: 75px;
     height: 50px;
+}
+.num-btn{
+    grid-area: nums;
+}
+.op-btn{
+    grid-area: operations;
+}
+.equal-btn{
+    grid-area: equal;
+}
+.func-btn{
+    grid-area: erase;
 }
