@@ -18,32 +18,44 @@
 }
 .calc-btns{
     display: grid;
-    grid-template-areas: 
-        "operations operations erase erase"
-        "nums nums nums operations"
-        "nums nums nums operations"
-        "nums nums nums equal"
-        "nums nums nums equal"
-    ;
+    grid-template: repeat(5, 25%)/ repeat(4,25%);
 
     width: 80%;
-    height: 60%;
-
+    height: 40%;
     background-color: aliceblue;
 }
-.num-btn{
-    width: 75px;
-    height: 50px;
+.calc-btns > button{
+    border: none;
+    cursor: pointer;
 }
-.num-btn{
-    grid-area: nums;
-}
-.op-btn{
-    grid-area: operations;
-}
-.equal-btn{
-    grid-area: equal;
+.calc-btns > button:hover{
+    background-color: #232323;
 }
 .func-btn{
-    grid-area: erase;
+    grid-row: 1;
+    grid-column: 3/ span 2;
+}
+.equal-btn{
+    grid-row: 4/ span 2;
+    grid-column: 4;
+}
+#num0{
+    grid-row: 5;
+    grid-column: 1 / span 2;
+}
+#division-op{
+    grid-row: 1;
+    grid-column: 1;
+}
+#multiplication-op{
+    grid-row: 1;
+    grid-column: 2;
+}
+#addition-op{
+    grid-row: 2;
+    grid-column: 4;
+}
+#subtraction-op{
+    grid-row: 3;
+    grid-column: 4;
 }
