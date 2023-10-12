@@ -5,35 +5,47 @@ const numBtn = document.querySelectorAll(".num-btn");
 const opBtn = document.querySelectorAll(".op-btn");
 const equalBtn = document.querySelector(".equal-btn")
 const eraseBtn = document.querySelector(".func-btn");
-const display = document.querySelector(".calc-display");
+const display = document.querySelector(".selected-number");
+const displayViewer = document.querySelector(".operation-viewer")
 
-const add = (num1 ,num2) => num1 + num2;
+const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
-const divide = (num1, num2) => num1/num2;
+const divide = (num1, num2) => num1 / num2;
 
 
 const operate = (operator, num1, num2) => {
     switch (operator) {
         case "+":
-            return add(num1, num2);
+            return add(+num1, +num2);
             break;
         case "-":
-            return subtract(num1, num2);
+            return subtract(+num1, +num2);
             break;
         case "/":
-            return divide(num1, num2);
+            return divide(+num1, +num2);
             break;
         case "x":
-            return multiply(num1, num2);
+            return multiply(+num1, +num2);
             break;
         default:
             break;
     }
 }
+const updateViewer = (...parameters) => {
+    clearDisplay(displayViewer, false);
 
-const clearDisplay = () => {
-    display.textContent = "0";
+    parameters.forEach(item => {
+        displayViewer.textContent += " " + item;
+    });
+
+}
+const clearDisplay = (displayToClear, makeItZero) => {
+    if (makeItZero) {
+        displayToClear.textContent = "0";
+        return;
+    }
+    displayToClear.textContent = "";
 }
 
 numBtn.forEach(btn => {
@@ -47,7 +59,7 @@ numBtn.forEach(btn => {
 
 eraseBtn.addEventListener("click", () => {
     let displayText = display.textContent;
-    display.textContent = displayText.slice(0, displayText.length-1);
+    display.textContent = displayText.slice(0, displayText.length - 1);
     if (display.textContent == "") {
         display.textContent = "0";
     }
@@ -57,7 +69,8 @@ opBtn.forEach(btn => {
     btn.addEventListener("click", () => {
         num1 = +display.textContent;
         operator = btn.textContent;
-        clearDisplay();
+        updateViewer(num1, operator)
+        clearDisplay(display, true);
     })
 });
 
@@ -65,8 +78,11 @@ equalBtn.addEventListener("click", () => {
     if (num1 === null || operator === null) {
         return;
     }
-    console.log(operate(operator, num1, +display.textContent));
-    display.textContent = (operate(operator, num1, +display.textContent));
-    num1 = display.textContent;
-    operator = null;    
+    num2 = display.textContent;
+    updateViewer(num1, operator, num2, "=")
+
+    let result = (operate(operator, num1, num2));
+    display.textContent = result;
+    num1 = result;
+    operator = null;
 })

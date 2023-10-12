@@ -24,15 +24,18 @@ body{
     background-color: var(--calcBodyColor);
 }
 .calc-display{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+
     width: 80%;
     height: 15%;
 
-    font-family: 'Segment7Standard';
-    font-size: 50px;
-    text-align: end;
-    color: #565a75;
-
     background-color: #ffffff;
+}
+.operation-viewer{
+    color: red;
 }
 .calc-btns{
     display: grid;
