@@ -51,6 +51,7 @@ body{
 }
 .calc-btns > button:hover{
     background-color: #232323;
+    color: wheat;
 }
 
 .calc-btns .op-btn{
