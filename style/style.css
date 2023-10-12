@@ -1,4 +1,4 @@
-:root{
+:root {
     --pageBodyColor: #6a536e;
     --calcBodyColor: #45444f;
     --btnBackgroundColor: #d9ffea;
@@ -9,7 +9,8 @@
     --btnEqual: #4b80ca;
     --btnDelete: #b45252;
 }
-body{
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +19,8 @@ body{
 
     height: 100vh;
 }
-.calc-body{
+
+.calc-body {
     display: flex;
     flex-direction: column;
 
@@ -32,7 +34,8 @@ body{
 
     border-radius: 10%;
 }
-.calc-display{
+
+.calc-display {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -43,70 +46,90 @@ body{
 
     background-color: var(--displayColor);
 
-    border-radius: 5%;
+    border-radius: 0 20px 0 20px;
 }
-.operation-viewer,
+
 .selected-number{
+    font-size: 40px;
+}
+
+.operation-viewer,
+.selected-number {
     padding: 0 20px;
 }
-.calc-btns{
+
+.calc-btns {
     display: grid;
-    grid-template: repeat(5, 1fr)/ repeat(4,25%);
+    grid-template: repeat(5, 1fr)/ repeat(4, 25%);
 
     width: 80%;
-    height: 40%;
+    height: 50%;
 }
-.calc-btns  button{
+
+.calc-btns button {
     border: 1px solid var(--calcBodyColor);
     cursor: pointer;
 
     color: var(--btnTextColor);
 
     background-color: var(--btnBackgroundColor);
-    border-radius: 5px;
-}
-.calc-btns > button:hover{
-    mix-blend-mode: overlay;
 }
 
-.calc-btns .op-btn{
+.calc-btns>button:hover {
+    mix-blend-mode: overlay;
+    color: black;
+}
+
+.calc-btns .op-btn {
     background-color: var(--btnOperationColor);
 
     color: #1f1f1f;
 }
 
-#erase{
+#erase {
     grid-row: 1;
     grid-column: 1/ span 2;
+
     background-color: var(--btnErase);
+
+    border-radius: 20px 0 0 0;
 }
-#equal{
+
+#equal {
     grid-row: 5;
     grid-column: 3 / span 2;
 
     background-color: var(--btnEqual);
+
+    border-radius: 0 0 20px 0;
 }
-#num0{
+
+#num0 {
     grid-row: 5;
     grid-column: 2;
 }
-#division-op{
+
+#division-op {
     grid-row: 1;
     grid-column: 4;
 }
-#multiplication-op{
+
+#multiplication-op {
     grid-row: 2;
     grid-column: 4;
 }
-#addition-op{
+
+#addition-op {
     grid-row: 3;
     grid-column: 4;
 }
-#subtraction-op{
+
+#subtraction-op {
     grid-row: 4;
     grid-column: 4;
 }
-#delete{
+
+#delete {
     grid-row: 1;
     grid-column: 3;
 
