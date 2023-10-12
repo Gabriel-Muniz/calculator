@@ -10,9 +10,7 @@ Make a drawing mockup would be helpfull.
 
 Learn to style things like pixelart in css
 
-## Links to see later
+## Links
 
-https://lospec.com/palette-list/hollow  
-https://lospec.com/palette-list/dustbyte  
-https://lospec.com/palette-list/rgr-papercut4  
-https://lospec.com/palette-list/steampunk-4  
+Palette used: https://lospec.com/palette-list/cc-29
+Box shaddow turotial used: https://www.joshwcomeau.com/css/introducing-shadow-palette-generator/
