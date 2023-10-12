@@ -67,6 +67,9 @@ eraseBtn.addEventListener("click", () => {
 
 opBtn.forEach(btn => {
     btn.addEventListener("click", () => {
+        if (operator !== null) {
+            equalBtn.click();
+        }
         num1 = +display.textContent;
         operator = btn.textContent;
         updateViewer(num1, operator)
@@ -84,5 +87,6 @@ equalBtn.addEventListener("click", () => {
     let result = (operate(operator, num1, num2));
     display.textContent = result;
     num1 = result;
+    console.log("CLICK")
     operator = null;
 })
