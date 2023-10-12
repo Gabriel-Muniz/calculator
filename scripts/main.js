@@ -1,3 +1,5 @@
+let num1 = num2 = 0;
+
 const numBtn = document.querySelectorAll(".num-btn");
 const eraseBtn = document.querySelector(".func-btn");
 const display = document.querySelector(".calc-display");
@@ -34,3 +36,11 @@ numBtn.forEach(btn => {
         display.textContent += btn.textContent;
     })
 });
+
+eraseBtn.addEventListener("click", () => {
+    let displayText = display.textContent;
+    display.textContent = displayText.slice(0, displayText.length-1);
+    if (display.textContent == "") {
+        display.textContent = "0";
+    }
+})
