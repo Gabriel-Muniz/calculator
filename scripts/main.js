@@ -5,8 +5,10 @@ const numBtn = document.querySelectorAll(".num-btn");
 const opBtn = document.querySelectorAll(".op-btn");
 const equalBtn = document.querySelector(".equal-btn")
 const eraseBtn = document.querySelector(".func-btn");
+const deleteBtn = document.querySelector("#delete")
 const display = document.querySelector(".selected-number");
-const displayViewer = document.querySelector(".operation-viewer")
+const displayViewer = document.querySelector(".operation-viewer");
+const dot = document.querySelector(".dot");
 
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
@@ -87,6 +89,11 @@ equalBtn.addEventListener("click", () => {
     let result = (operate(operator, num1, num2));
     display.textContent = result;
     num1 = result;
-    console.log("CLICK")
     operator = null;
+})
+
+deleteBtn.addEventListener("click", () => {
+    clearDisplay(displayViewer, true);
+    clearDisplay(display, true);
+    num1 = num2 = operator = null;
 })
