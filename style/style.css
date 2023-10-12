@@ -4,7 +4,13 @@
     --btnTextColor: #8b956d;
     --btnSpecialColor: #c6b7be;
 }
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    height: 100vh;
+}
 .calc-body{
     display: flex;
     flex-direction: column;
