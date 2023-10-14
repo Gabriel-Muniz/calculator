@@ -1,6 +1,7 @@
 let num1 = num2 = null;
 let operator = null;
 
+const calcBtn = document.querySelectorAll(".calc-btns button");
 const numBtn = document.querySelectorAll(".num-btn");
 const opBtn = document.querySelectorAll(".op-btn");
 const equalBtn = document.querySelector(".equal-btn")
@@ -8,7 +9,9 @@ const eraseBtn = document.querySelector(".func-btn");
 const deleteBtn = document.querySelector("#delete")
 const display = document.querySelector(".selected-number");
 const displayViewer = document.querySelector(".operation-viewer");
-const dot = document.querySelector(".dot");
+const dot = document.querySelector("#dot");
+const zero = document.querySelector("#num0");
+const regExp = /\.+/
 
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
@@ -50,21 +53,43 @@ const clearDisplay = (displayToClear, makeItZero) => {
     displayToClear.textContent = "";
 }
 
+const updateDisplay = (parameter) => {
+    if (display.textContent === "0" && parameter !== ".") {
+        display.textContent = "";
+    }
+    display.textContent += parameter;
+}
+
+const checkDots = () => {
+    if (regExp.test(display.textContent)) {
+        dot.disabled = true;
+        dot.classList.add("disabled");
+    }
+    else {
+        dot.disabled = false;
+        dot.classList.remove("disabled")
+    }
+}
+
 numBtn.forEach(btn => {
     btn.addEventListener("click", () => {
-        if (display.textContent === "0") {
-            display.textContent = "";
-        }
-        display.textContent += btn.textContent;
+        console.log("Botao tipo: " + typeof btn.textContent);
+        console.log(typeof ".");
+        console.log(typeof "." !== typeof btn.textContent);
+        updateDisplay(btn.textContent)
+        checkDots();
     })
 });
 
+
+
 eraseBtn.addEventListener("click", () => {
     let displayText = display.textContent;
-    display.textContent = displayText.slice(0, displayText.length - 1);
+    display.textContent = displayText.slice(0, display.textContent.length - 1);
     if (display.textContent == "") {
         display.textContent = "0";
     }
+    checkDots();
 })
 
 opBtn.forEach(btn => {
@@ -76,6 +101,8 @@ opBtn.forEach(btn => {
         operator = btn.textContent;
         updateViewer(num1, operator)
         clearDisplay(display, true);
+        checkDots();
+
     })
 });
 
@@ -87,13 +114,16 @@ equalBtn.addEventListener("click", () => {
     updateViewer(num1, operator, num2, "=")
 
     let result = (operate(operator, num1, num2));
-    display.textContent = result;
+    clearDisplay(display, false);
+    updateDisplay(result);
     num1 = result;
     operator = null;
+    checkDots();
 })
 
 deleteBtn.addEventListener("click", () => {
     clearDisplay(displayViewer, true);
     clearDisplay(display, true);
     num1 = num2 = operator = null;
+    checkDots();
 })
