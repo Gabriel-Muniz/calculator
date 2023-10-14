@@ -11,7 +11,8 @@ const display = document.querySelector(".selected-number");
 const displayViewer = document.querySelector(".operation-viewer");
 const dot = document.querySelector("#dot");
 const zero = document.querySelector("#num0");
-const regExp = /\.+/
+const dotRegExp = /\.+/     //Check if the display already have a dot
+const zeroRegExp = /^0$/    //Check if the display number is 0
 
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
@@ -23,22 +24,18 @@ const operate = (operator, num1, num2) => {
     switch (operator) {
         case "+":
             return add(+num1, +num2);
-            break;
         case "-":
             return subtract(+num1, +num2);
-            break;
         case "/":
             return divide(+num1, +num2);
-            break;
         case "x":
             return multiply(+num1, +num2);
-            break;
         default:
             break;
     }
 }
 
-function keyPress(e) {
+const keyPress = (e) => {
     const pressedKey = document.querySelector(`.calc-btns button[data-key='${e.key}']`);
     if(!pressedKey) return;
     pressedKey.click();
@@ -68,7 +65,7 @@ const updateDisplay = (parameter) => {
 }
 
 const checkDots = () => {
-    if (regExp.test(display.textContent)) {
+    if (dotRegExp.test(display.textContent)) {
         dot.disabled = true;
         dot.classList.add("disabled");
     }
@@ -76,6 +73,14 @@ const checkDots = () => {
         dot.disabled = false;
         dot.classList.remove("disabled")
     }
+}
+
+const checkDivision = () => {
+    if (zeroRegExp.test(display.textContent) ) {
+        alert("You can't divide by zero")
+        return true;
+    }
+    return false;
 }
 
 numBtn.forEach(btn => {
@@ -112,6 +117,9 @@ opBtn.forEach(btn => {
 
 equalBtn.addEventListener("click", () => {
     if (num1 === null || operator === null) {
+        return;
+    }
+    if (checkDivision()) {
         return;
     }
     num2 = display.textContent;
