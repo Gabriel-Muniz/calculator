@@ -37,6 +37,13 @@ const operate = (operator, num1, num2) => {
             break;
     }
 }
+
+function keyPress(e) {
+    const pressedKey = document.querySelector(`.calc-btns button[data-key='${e.key}']`);
+    if(!pressedKey) return;
+    pressedKey.click();
+}
+
 const updateViewer = (...parameters) => {
     clearDisplay(displayViewer, false);
 
@@ -73,15 +80,12 @@ const checkDots = () => {
 
 numBtn.forEach(btn => {
     btn.addEventListener("click", () => {
-        console.log("Botao tipo: " + typeof btn.textContent);
-        console.log(typeof ".");
-        console.log(typeof "." !== typeof btn.textContent);
         updateDisplay(btn.textContent)
         checkDots();
     })
 });
 
-
+window.addEventListener("keydown", keyPress);
 
 eraseBtn.addEventListener("click", () => {
     let displayText = display.textContent;
