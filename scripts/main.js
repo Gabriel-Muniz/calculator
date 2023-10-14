@@ -114,6 +114,7 @@ equalBtn.addEventListener("click", () => {
     updateViewer(num1, operator, num2, "=")
 
     let result = (operate(operator, num1, num2));
+    result = Math.round(result * 100) / 100;
     clearDisplay(display, false);
     updateDisplay(result);
     num1 = result;
