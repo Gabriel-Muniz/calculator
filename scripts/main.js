@@ -75,14 +75,6 @@ const checkDots = () => {
     }
 }
 
-const checkDivision = () => {
-    if (zeroRegExp.test(display.textContent) ) {
-        alert("You can't divide by zero")
-        return true;
-    }
-    return false;
-}
-
 numBtn.forEach(btn => {
     btn.addEventListener("click", () => {
         updateDisplay(btn.textContent)
@@ -119,7 +111,11 @@ equalBtn.addEventListener("click", () => {
     if (num1 === null || operator === null) {
         return;
     }
-    if (checkDivision()) {
+    if (operator == "/" && display.textContent == "0") {
+        alert("You can't divide by zero");
+        clearDisplay(displayViewer, true);
+        display.textContent = num1;
+        operator = null;
         return;
     }
     num2 = display.textContent;
