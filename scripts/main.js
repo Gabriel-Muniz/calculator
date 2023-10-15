@@ -83,12 +83,7 @@ const perAction = () => {
     console.log(currentFontSize);
     console.log(displaySelected.offsetWidth)
     checkDots();
-    ghostHandler();
     checkWidth();
-}
-
-const ghostHandler = () => {
-    displayGhost.textContent = displaySelected.textContent;
 }
 
 const clearDisplay = (displayToClear, makeItZero) => {

@@ -101,6 +101,11 @@ body {
 
     border-radius: 0 20px 0 20px;
 }
+
+.selected-container{
+    padding: 5px;
+}
+
 .operation-viewer{
     opacity: 0.5;
 }
@@ -110,24 +115,19 @@ body {
     visibility: hidden;
 }
 
-.selected-ghost,
 .selected-number{
-    position: absolute;
-    right: 0;
-    bottom: 0;
     grid-row: 2;
     font-size: 2.5rem;
     height: 100%;
 }
 
 .operation-viewer,
-.selected-number,
-.selected-ghost {
+.selected-number {
     display: flex;
     justify-content: flex-end;
     
 
-    padding: 0 20px 0 20px;
+    padding: 0 20px 0 0px;
 }
 
 .calc-btns {
