@@ -153,6 +153,7 @@ equalBtn.addEventListener("click", () => {
         clearDisplay(displayViewer, true);
         displaySelected.textContent = num1;
         operator = null;
+        perAction();
         return;
     }
     num2 = displaySelected.textContent;
