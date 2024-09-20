@@ -25,3 +25,41 @@ function operate(operator, n1, n2) {
       break;
   }
 }
+
+const getOperation = function (operation) {
+  let operationSymbol = '';
+  switch (operation) {
+    case "add":
+      operationSymbol = "+";
+      break;
+    case "subtract":
+      operationSymbol = "-";
+      break;
+    case "multiply":
+      operationSymbol = "x";
+      break;
+    case "divide":
+      operationSymbol = "/";
+      break;
+    default:
+      break;
+  }
+
+  return operationSymbol;
+};
+
+const displayText = document.querySelector(".calculator-display");
+const numBtns = document.querySelectorAll(".num-btn");
+const operationBtns = document.querySelectorAll(".operation");
+
+operationBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    displayText.textContent = getOperation(btn.value);
+  });
+});
+
+numBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    displayText.textContent += btn.value;
+  });
+});
