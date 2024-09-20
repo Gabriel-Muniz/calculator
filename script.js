@@ -77,3 +77,5 @@ numBtns.forEach((btn) => {
 
 //Adicionar variáveis para a realização das operações
 
+//Limpar display após seleção de operação e seleção de número
+
