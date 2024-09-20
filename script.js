@@ -48,18 +48,32 @@ const getOperation = function (operation) {
   return operationSymbol;
 };
 
+
 const displayText = document.querySelector(".calculator-display");
 const numBtns = document.querySelectorAll(".num-btn");
 const operationBtns = document.querySelectorAll(".operation");
 
+const populateDisplay = function(string, concatString = true) {
+  if(concatString == true){
+    displayText.textContent += string;
+    return;
+  } 
+  displayText.textContent = string;
+}
+
 operationBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    displayText.textContent = getOperation(btn.value);
+    populateDisplay(getOperation(btn.value), false);
   });
 });
 
 numBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    displayText.textContent += btn.value;
+    populateDisplay(btn.value);
   });
 });
+
+//Adicionar EventListener nos botões de exclusão e de igual
+
+//Adicionar variáveis para a realização das operações
+
