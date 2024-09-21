@@ -26,54 +26,61 @@ body > * {
   background-color: yellow;
 }
 .calculator-body {
-  /* height: 500px; */
-  background-color: aqua;
+  background-color: #937faf;
 }
 .calculator-display {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 
-  min-height: 100px;
+  min-height: 75px;
   padding: 5px;
 
   box-sizing: border-box;
-  background-color: rgb(124, 87, 42);
+  background-color: #cadbc5;
+  border-radius: 15px;
+}
+.display-container {
+  background-color: #705b8d;
+  padding: 15px 10px;
 }
 .calculator-buttons {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  flex-wrap: wrap;
-}
-.top-btn {
-  display: flex;
   gap: 5px;
-}
-.bottom-btn {
-  width: 100%;
-}
-.col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: baseline;
 
-  gap: 5px;
+  padding: 8px;
 }
-.line {
+.row {
   width: 100%;
   display: flex;
   gap: 5px;
 }
-.col > *,
-.line > * {
-  width: 50px;
-  height: 50px;
+.row > button {
+  width: 45px;
+  height: 45px;
+
+  border: none;
+  border-radius: 15%;
 }
-.erase,
-.line > * {
-  flex: 1;
+.num-btn[value="0"],
+.equal {
+  flex: 2;
+}
+.num-btn {
+  background-color: #fff4e3;
+}
+.operation,
+.function-btn[value="delete"] {
+  background-color: #9dce9f;
+}
+.function-btn[value="erase"] {
+  background-color: #9b4e4f;
+  color: #fff4e3;
+}
+.equal {
+  background-color: #404fb1;
+  color: #fff4e3;
 }
