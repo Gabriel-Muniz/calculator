@@ -63,10 +63,13 @@ const populateDisplay = function(string, concatString = true) {
 }
 
 const eraseDisplay = function() {
+  
   let displayValue = displayText.textContent;
   let newDisplayValue = displayValue.slice(0, displayValue.length-1);
   
-  console.log(newDisplayValue);
+  if (newDisplayValue == '') {
+    return 0;
+  }
   return newDisplayValue;
 }
 
