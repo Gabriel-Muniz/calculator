@@ -3,8 +3,8 @@ const subtractCalc = (n1, n2) => n1 - n2;
 const multiplyCalc = (n1, n2) => n1 * n2;
 const divideCalc = (n1, n2) => n1 / n2;
 
-const number1 = 1;
-const number2 = 2;
+let number1 = null;
+let number2 = null;
 
 function operate(operator, n1, n2) {
   switch (operator) {
@@ -71,6 +71,10 @@ const eraseDisplay = function() {
     return 0;
   }
   return newDisplayValue;
+}
+
+const getDisplayValue = function() {
+  return Number(displayText.textContent);
 }
 
 operationBtns.forEach((btn) => {
