@@ -48,10 +48,11 @@ const getOperation = function (operation) {
   return operationSymbol;
 };
 
-
 const displayText = document.querySelector(".calculator-display");
 const numBtns = document.querySelectorAll(".num-btn");
 const operationBtns = document.querySelectorAll(".operation");
+const clearBtn = document.querySelector(".function-btn[value='clear']");
+const ereaseBtn = document.querySelector(".function-btn[value='erase']");
 
 const populateDisplay = function(string, concatString = true) {
   if(concatString == true){
@@ -59,6 +60,14 @@ const populateDisplay = function(string, concatString = true) {
     return;
   } 
   displayText.textContent = string;
+}
+
+const eraseDisplay = function() {
+  let displayValue = displayText.textContent;
+  let newDisplayValue = displayValue.slice(0, displayValue.length-1);
+  
+  console.log(newDisplayValue);
+  return newDisplayValue;
 }
 
 operationBtns.forEach((btn) => {
@@ -74,6 +83,14 @@ numBtns.forEach((btn) => {
 });
 
 //Adicionar EventListener nos botões de exclusão e de igual
+clearBtn.addEventListener('click', () => {
+  populateDisplay(0, false)
+})
+
+ereaseBtn.addEventListener('click', () => {
+  populateDisplay(eraseDisplay(), false);
+})
+
 
 //Adicionar variáveis para a realização das operações
 
