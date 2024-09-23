@@ -8,7 +8,7 @@ let number2 = null;
 let operation = "";
 
 const displayText = document.querySelector(".display-bottom");
-const displayHistory = document.querySelector(".display-bottom");
+const displayHistory = document.querySelector(".display-top");
 const numBtns = document.querySelectorAll(".num-btn");
 const operationBtns = document.querySelectorAll(".operation");
 const clearBtn = document.querySelector(".function-btn[value='clear']");
@@ -65,6 +65,10 @@ const getOperation = function (operation) {
   return operationSymbol;
 };
 
+const populateHistory = function (string){
+  displayHistory.textContent = string;
+}
+
 const populateDisplay = function (string, concatString = true) {
   if (concatString == true) {
     displayText.textContent += string;
@@ -104,6 +108,7 @@ operationBtns.forEach((btn) => {
     if (number1 == null) number1 = getDisplayValue();
     operation = btn.value;
 
+    populateHistory(number1)
     populateDisplay(getOperation(operation), false);
   });
 });
@@ -111,6 +116,7 @@ operationBtns.forEach((btn) => {
 numBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     if (typeof getDisplayValue() != "number") {
+      populateHistory(`${number1} ${getOperation(operation)}`)
       populateDisplay(btn.value, false);
       return;
     }
@@ -123,6 +129,7 @@ numBtns.forEach((btn) => {
 const resetCalc = function () {
   number1 = number2 = null;
   operation = "";
+  populateHistory('');
   populateDisplay(0, false);
 };
 
@@ -140,6 +147,7 @@ ereaseBtn.addEventListener("click", () => {
 
 equalBtn.addEventListener("click", () => {
   number2 = getDisplayValue();
+  populateHistory(`${number1} ${getOperation(operation)} ${number2} =`)
   populateDisplay(operate(operation, number1, number2), false);
   number1 = getDisplayValue();
   operation = "";
