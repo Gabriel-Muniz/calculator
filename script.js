@@ -7,6 +7,14 @@ let number1 = null;
 let number2 = null;
 let operation = "";
 
+const displayText = document.querySelector(".calculator-display");
+const numBtns = document.querySelectorAll(".num-btn");
+const operationBtns = document.querySelectorAll(".operation");
+const clearBtn = document.querySelector(".function-btn[value='clear']");
+const ereaseBtn = document.querySelector(".function-btn[value='erase']");
+const equalBtn = document.querySelector(".equal");
+const dotBtn = document.querySelector(".decimal");
+
 function operate(operator, n1, n2) {
   switch (operator) {
     case "add":
@@ -56,14 +64,8 @@ const getOperation = function (operation) {
   return operationSymbol;
 };
 
-const displayText = document.querySelector(".calculator-display");
-const numBtns = document.querySelectorAll(".num-btn");
-const operationBtns = document.querySelectorAll(".operation");
-const clearBtn = document.querySelector(".function-btn[value='clear']");
-const ereaseBtn = document.querySelector(".function-btn[value='erase']");
-const equalBtn = document.querySelector(".equal");
-
 const populateDisplay = function (string, concatString = true) {
+
   if (concatString == true) {
     displayText.textContent += string;
     return;
@@ -127,7 +129,7 @@ clearBtn.addEventListener("click", () => {
 
 ereaseBtn.addEventListener("click", () => {
   if (number1 !== null && number2 !== null) {
-    resetCalc()
+    resetCalc();
   }
   populateDisplay(eraseDisplay(), false);
   number1 = getDisplayValue();
@@ -137,6 +139,20 @@ equalBtn.addEventListener("click", () => {
   number2 = getDisplayValue();
   populateDisplay(operate(operation, number1, number2), false);
   number1 = getDisplayValue();
+});
+
+dotBtn.addEventListener("click", () => {
+  let displayValue = displayText.textContent;
+  console.log("oof");
+  if (/\./.exec(displayValue)) return;
+  populateDisplay(".");
+
+  console.log(`
+    DisplayValue: ${displayValue}
+    getDisplayValue: ${getDisplayValue()}
+    Number 1: ${number1}
+    Number 2: ${number2}
+    `);
 });
 
 //Adicionar variáveis para a realização das operações
