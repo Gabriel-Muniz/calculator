@@ -7,7 +7,8 @@ let number1 = null;
 let number2 = null;
 let operation = "";
 
-const displayText = document.querySelector(".calculator-display");
+const displayText = document.querySelector(".display-bottom");
+const displayHistory = document.querySelector(".display-bottom");
 const numBtns = document.querySelectorAll(".num-btn");
 const operationBtns = document.querySelectorAll(".operation");
 const clearBtn = document.querySelector(".function-btn[value='clear']");
@@ -65,7 +66,6 @@ const getOperation = function (operation) {
 };
 
 const populateDisplay = function (string, concatString = true) {
-
   if (concatString == true) {
     displayText.textContent += string;
     return;
@@ -98,6 +98,9 @@ const getDisplayValue = function () {
 
 operationBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
+    if (operation != "") {
+      equalBtn.click();
+    }
     if (number1 == null) number1 = getDisplayValue();
     operation = btn.value;
 
@@ -139,20 +142,14 @@ equalBtn.addEventListener("click", () => {
   number2 = getDisplayValue();
   populateDisplay(operate(operation, number1, number2), false);
   number1 = getDisplayValue();
+  operation = "";
 });
 
 dotBtn.addEventListener("click", () => {
   let displayValue = displayText.textContent;
-  console.log("oof");
-  if (/\./.exec(displayValue)) return;
+  let hasDot = /\./;
+  if (hasDot.exec(displayValue)) return;
   populateDisplay(".");
-
-  console.log(`
-    DisplayValue: ${displayValue}
-    getDisplayValue: ${getDisplayValue()}
-    Number 1: ${number1}
-    Number 2: ${number2}
-    `);
 });
 
 //Adicionar variáveis para a realização das operações
