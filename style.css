@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Squada+One&display=swap");
+
 html {
   width: 100vw;
   height: 100vh;
@@ -23,10 +25,15 @@ body > * {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: yellow;
+  background-color: rgb(171, 141, 84);
 }
 .calculator-body {
   background-color: #937faf;
+  border-radius: 15px;
+  overflow: hidden;
+
+  box-shadow: 0 0 2px rgba(0, 0, 0);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 50%);
 }
 .calculator-display {
   display: flex;
@@ -40,11 +47,25 @@ body > * {
   box-sizing: border-box;
   background-color: #cadbc5;
   font-size: 28px;
+  font-family: "Squada One";
   border-radius: 15px;
 }
 .display-container {
   background-color: #705b8d;
   padding: 15px 10px;
+}
+.display-bottom,
+.display-top {
+  display: flex;
+  align-items: center;
+}
+.display-top {
+  font-size: 24px;
+  color: #00000077;
+}
+.display-bottom {
+  flex: 2;
+  font-size: 35px;
 }
 .calculator-buttons {
   display: flex;
@@ -66,6 +87,9 @@ body > * {
 
   border: none;
   border-radius: 15%;
+
+  font-size: 20px;
+  font-weight: bold;
 }
 .num-btn[value="0"],
 .equal {
@@ -76,7 +100,12 @@ body > * {
 }
 .operation,
 .function-btn[value="delete"] {
-  background-color: #9dce9f;
+  color: #fff4e3;
+  background-color: #506a9b;
+}
+.function-btn[value="clear"] {
+  background-color: #653233;
+  color: #fff4e3;
 }
 .function-btn[value="erase"] {
   background-color: #9b4e4f;
@@ -85,4 +114,8 @@ body > * {
 .equal {
   background-color: #404fb1;
   color: #fff4e3;
+}
+.decimal {
+  font-size: 5px;
+  background-color: #ffccbd;
 }
