@@ -1,7 +1,23 @@
-const addCalc = (n1, n2) => n1 + n2;
-const subtractCalc = (n1, n2) => n1 - n2;
-const multiplyCalc = (n1, n2) => n1 * n2;
-const divideCalc = (n1, n2) => n1 / n2;
+const addCalc = (n1, n2) => { 
+  let result = n1 + n2;
+
+  return formatReturn(result);
+};
+const subtractCalc = (n1, n2) => {
+  let result =   n1 - n2;
+
+  return formatReturn(result);
+};
+const multiplyCalc = (n1, n2) => {
+  let result =  n1 * n2
+
+  return formatReturn(result)
+};
+const divideCalc = (n1, n2) => {
+  let result = n1 / n2
+
+  return formatReturn(result)
+};
 
 let number1 = null;
 let number2 = null;
@@ -15,6 +31,10 @@ const clearBtn = document.querySelector(".function-btn[value='clear']");
 const ereaseBtn = document.querySelector(".function-btn[value='erase']");
 const equalBtn = document.querySelector(".equal");
 const dotBtn = document.querySelector(".decimal");
+
+function formatReturn(result) {
+  return (Number.isInteger(result)) ? result : result.toFixed(2);
+}
 
 function operate(operator, n1, n2) {
   switch (operator) {
