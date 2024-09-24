@@ -1,22 +1,22 @@
-const addCalc = (n1, n2) => { 
+const addCalc = (n1, n2) => {
   let result = n1 + n2;
 
   return formatReturn(result);
 };
 const subtractCalc = (n1, n2) => {
-  let result =   n1 - n2;
+  let result = n1 - n2;
 
   return formatReturn(result);
 };
 const multiplyCalc = (n1, n2) => {
-  let result =  n1 * n2
+  let result = n1 * n2;
 
-  return formatReturn(result)
+  return formatReturn(result);
 };
 const divideCalc = (n1, n2) => {
-  let result = n1 / n2
+  let result = n1 / n2;
 
-  return formatReturn(result)
+  return formatReturn(result);
 };
 
 let number1 = null;
@@ -33,7 +33,7 @@ const equalBtn = document.querySelector(".equal");
 const dotBtn = document.querySelector(".decimal");
 
 function formatReturn(result) {
-  return (Number.isInteger(result)) ? result : result.toFixed(2);
+  return Number.isInteger(result) ? result : result.toFixed(2);
 }
 
 function operate(operator, n1, n2) {
@@ -85,9 +85,9 @@ const getOperation = function (operation) {
   return operationSymbol;
 };
 
-const populateHistory = function (string){
+const populateHistory = function (string) {
   displayHistory.textContent = string;
-}
+};
 
 const populateDisplay = function (string, concatString = true) {
   if (concatString == true) {
@@ -128,7 +128,7 @@ operationBtns.forEach((btn) => {
     if (number1 == null) number1 = getDisplayValue();
     operation = btn.value;
 
-    populateHistory(number1)
+    populateHistory(number1);
     populateDisplay(getOperation(operation), false);
   });
 });
@@ -136,7 +136,7 @@ operationBtns.forEach((btn) => {
 numBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     if (typeof getDisplayValue() != "number") {
-      populateHistory(`${number1} ${getOperation(operation)}`)
+      populateHistory(`${number1} ${getOperation(operation)}`);
       populateDisplay(btn.value, false);
       return;
     }
@@ -149,7 +149,7 @@ numBtns.forEach((btn) => {
 const resetCalc = function () {
   number1 = number2 = null;
   operation = "";
-  populateHistory('');
+  populateHistory("");
   populateDisplay(0, false);
 };
 
@@ -166,8 +166,12 @@ ereaseBtn.addEventListener("click", () => {
 });
 
 equalBtn.addEventListener("click", () => {
+  if (operation == "") {
+    return;
+  }
+
   number2 = getDisplayValue();
-  populateHistory(`${number1} ${getOperation(operation)} ${number2} =`)
+  populateHistory(`${number1} ${getOperation(operation)} ${number2} =`);
   populateDisplay(operate(operation, number1, number2), false);
   number1 = getDisplayValue();
   operation = "";
