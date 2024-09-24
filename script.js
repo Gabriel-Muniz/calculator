@@ -122,9 +122,7 @@ const getDisplayValue = function () {
 
 operationBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    if (operation != "") {
-      equalBtn.click();
-    }
+    if (operation != "") equalBtn.click();
     if (number1 == null) number1 = getDisplayValue();
     operation = btn.value;
 
@@ -166,11 +164,23 @@ ereaseBtn.addEventListener("click", () => {
 });
 
 equalBtn.addEventListener("click", () => {
+  console.log(`${operation} ${number2}`);
+  number2 = getDisplayValue();
+
+  
+  if (operation == 'divide' && number2 == 0){
+    resetCalc();
+    populateDisplay('DUMBASS', false);
+    setTimeout(() => {
+      resetCalc();
+    }, 1000)
+    return;
+  }
+
   if (operation == "") {
     return;
   }
 
-  number2 = getDisplayValue();
   populateHistory(`${number1} ${getOperation(operation)} ${number2} =`);
   populateDisplay(operate(operation, number1, number2), false);
   number1 = getDisplayValue();
