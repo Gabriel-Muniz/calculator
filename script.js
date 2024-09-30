@@ -85,6 +85,28 @@ const getOperation = function (operation) {
   return operationSymbol;
 };
 
+const handleOperations = function(mathOperation, isSymbol = false) {
+  if (isSymbol) {
+    mathOperation = (mathOperation == '/') ? 'divide' : (mathOperation == '*') ? 'multiply' : (mathOperation == '+') ? 'add' : 'subtract';
+    console.log(`Handle: ${mathOperation}`);
+    
+  }
+  if (operation != "") equalBtn.click();
+  if (number1 == null) number1 = getDisplayValue();
+  operation = mathOperation;
+
+  populateHistory(number1);
+  populateDisplay(getOperation(operation), false);
+}
+
+const handleNumbers = function(numInput){
+  if (typeof getDisplayValue() != "number") {
+    populateHistory(`${number1} ${getOperation(operation)}`);
+    populateDisplay(numInput, false);
+    return true;
+  }
+}
+
 const populateHistory = function (string) {
   displayHistory.textContent = string;
 };
@@ -122,22 +144,13 @@ const getDisplayValue = function () {
 
 operationBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    if (operation != "") equalBtn.click();
-    if (number1 == null) number1 = getDisplayValue();
-    operation = btn.value;
-
-    populateHistory(number1);
-    populateDisplay(getOperation(operation), false);
+    handleOperations(btn.value);
   });
 });
 
 numBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    if (typeof getDisplayValue() != "number") {
-      populateHistory(`${number1} ${getOperation(operation)}`);
-      populateDisplay(btn.value, false);
-      return;
-    }
+
     populateDisplay(btn.value);
   });
 });
@@ -167,19 +180,16 @@ equalBtn.addEventListener("click", () => {
   console.log(`${operation} ${number2}`);
   number2 = getDisplayValue();
 
-  
-  if (operation == 'divide' && number2 == 0){
+  if (operation == "divide" && number2 == 0) {
     resetCalc();
-    populateDisplay('DUMBASS', false);
+    populateDisplay("DUMBASS", false);
     setTimeout(() => {
       resetCalc();
-    }, 1000)
+    }, 1000);
     return;
   }
 
-  if (operation == "") {
-    return;
-  }
+  if (operation == "") return;
 
   populateHistory(`${number1} ${getOperation(operation)} ${number2} =`);
   populateDisplay(operate(operation, number1, number2), false);
@@ -197,3 +207,29 @@ dotBtn.addEventListener("click", () => {
 //Adicionar variáveis para a realização das operações
 
 //Limpar display após seleção de operação e seleção de número
+
+window.addEventListener("keydown", (event) => {
+  const keyName = event.key;
+  console.log(keyName);
+
+  if (Number(keyName) >= 0 && Number(keyName) <= 9) {
+    if (handleNumbers(keyName)) {
+      return;
+    }
+    populateDisplay(keyName);
+  }
+
+  if (keyName == "Backspace") ereaseBtn.click();
+
+  if (keyName == "Enter") equalBtn.click();
+  if (keyName == "Delete") clearBtn.click();
+  if (keyName == "." || keyName == ",") dotBtn.click();
+
+  if (keyName == '*' ||
+      keyName == '-' ||
+      keyName == '/' ||
+      keyName == '+'
+  ){
+    handleOperations(keyName, true)
+  }
+});
