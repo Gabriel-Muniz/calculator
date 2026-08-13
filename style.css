@@ -3,45 +3,166 @@
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 
-*, *::before, *::after {
-  box-sizing: border-box;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 *:not(dialog) {
-  margin: 0;
+    margin: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    interpolate-size: allow-keywords;
-  }
+    html {
+        interpolate-size: allow-keywords;
+    }
 }
 
 body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
 }
 
-input, button, textarea, select {
-  font: inherit;
+input,
+button,
+textarea,
+select {
+    font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
 }
 
 p {
-  text-wrap: pretty;
-}
-h1, h2, h3, h4, h5, h6 {
-  text-wrap: balance;
+    text-wrap: pretty;
 }
 
-#root, #__next {
-  isolation: isolate;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+#root,
+#__next {
+    isolation: isolate;
+}
+
+
+/* MY STYLES */
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+}
+
+.calculator-body {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 300px;
+    min-height: fit-content;
+    border: 2px solid black;
+}
+
+.calculator-display-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    min-height: 100px;
+    padding: 10px;
+    border-bottom: 2px solid black;
+}
+.result-display{
+    font-size: 32px;
+}
+.calculator-buttons-container {
+    display: flex;
+    min-height: fit-content;
+    padding: 5px;
+    gap: 5px;
+}
+
+.digits-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+}
+
+.digit-btn {
+    flex: 1 1 32%;
+    max-width: 32%;
+    aspect-ratio: 1/1;
+}
+
+.digit-btn[value='0'] {
+    max-width: calc(64% + 5px);
+    aspect-ratio: inherit;
+}
+
+.operations-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.operation-btn {
+    flex: 1 1 40%;
+}
+
+/* digits order */
+.digit-btn[value='decimal'] {
+    order: 10
+}
+
+.digit-btn[value='0'] {
+    order: 9;
+}
+
+.digit-btn[value='3'] {
+    order: 8;
+}
+
+.digit-btn[value='2'] {
+    order: 7;
+}
+
+.digit-btn[value='1'] {
+    order: 6;
+}
+
+.digit-btn[value='6'] {
+    order: 5;
+}
+
+.digit-btn[value='5'] {
+    order: 4;
+}
+
+.digit-btn[value='4'] {
+    order: 3;
 }
