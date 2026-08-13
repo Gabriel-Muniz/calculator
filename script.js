@@ -27,3 +27,20 @@ const operate = (operationNumber1, operationNumber2, operator) => {
             break;
     }
 }
+
+const calculatorButtons = document.querySelector('.calculator-buttons-container')
+
+calculatorButtons.addEventListener('click', (e) => {
+    if (!e.target.value) return;
+
+    if (operator === null) {
+        operationNumber1 = (operationNumber1) ? operationNumber1 + e.target.value : e.target.value;
+        updateDisplay();
+    }
+})
+
+const updateDisplay = (string) => {
+    const outDisplay = document.querySelector('.result-display');
+
+    outDisplay.textContent = operationNumber1;
+}
