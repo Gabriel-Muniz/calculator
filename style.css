@@ -89,14 +89,15 @@ body {
 
 .calculator-display-container {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
 
     min-height: 100px;
     padding: 10px;
     border-bottom: 2px solid black;
 }
-.result-display{
+.main-display{
     font-size: 32px;
 }
 .calculator-buttons-container {
