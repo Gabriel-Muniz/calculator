@@ -35,12 +35,12 @@ calculatorButtons.addEventListener('click', (e) => {
 
     if (operator === null) {
         operationNumber1 = (operationNumber1) ? operationNumber1 + e.target.value : e.target.value;
-        updateDisplay();
+        updateDisplay(operationNumber1);
     }
 })
 
 const updateDisplay = (string) => {
     const outDisplay = document.querySelector('.result-display');
 
-    outDisplay.textContent = operationNumber1;
+    outDisplay.textContent = string;
 }
