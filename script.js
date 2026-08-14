@@ -81,7 +81,17 @@ operationsContainer.addEventListener('click', (e) => {
 })
 
 equalBtn.addEventListener('click', (e) => {
-    if (operator === null || operationNumber2 === null) {alert(alo); return};
+    if (operator === null || operationNumber2 === null) { alert(alo); return };
+
+    if (operator === 'divide' && operationNumber2 == 0) {
+        updateDisplay(`Nuh-uh! You can't divide by 0!`)
+
+        setTimeout(() => {
+            clearCalc();
+        }, 1500)
+        return;
+    };
+
     let operationResult = operate(Number(operationNumber1), Number(operationNumber2), operator);
 
     updateDisplay(`${operationNumber1} ${operator} ${operationNumber2} =`, true);
