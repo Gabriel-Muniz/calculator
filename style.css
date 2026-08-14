@@ -137,7 +137,7 @@ body {
 }
 
 /* digits order */
-.digit-btn[value='decimal'] {
+.digit-btn[value='.'] {
     order: 10
 }
 

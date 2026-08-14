@@ -5,9 +5,10 @@ const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => num1 / num2;
 
-let operationNumber1 = null;
+let operationNumber1 = 0;
 let operationNumber2 = null;
 let operator = null;
+let auxCurrentNum = operationNumber1;
 
 const operate = (operationNumber1, operationNumber2, operator) => {
 
@@ -43,13 +44,21 @@ digitButtonsContainer.addEventListener('click', (e) => {
 
     if (!auxTarget.value) return;
 
+    if (auxTarget.value === '.') {
+        console.log(auxCurrentNum);
+        if (auxCurrentNum.includes('.')) return;
+    }
+
     if (operator === null) {
         operationNumber1 = (operationNumber1) ? operationNumber1 + auxTarget.value : auxTarget.value;
         updateDisplay(operationNumber1);
+        auxCurrentNum = operationNumber1;
     } else {
         operationNumber2 = (operationNumber2) ? operationNumber2 + auxTarget.value : auxTarget.value;
         updateDisplay(operationNumber2);
+        auxCurrentNum = operationNumber2;
     }
+
 })
 
 operationsContainer.addEventListener('click', (e) => {
@@ -68,6 +77,7 @@ operationsContainer.addEventListener('click', (e) => {
 })
 
 equalBtn.addEventListener('click', (e) => {
+    if (operator === null) return;
     let operationResult = operate(Number(operationNumber1), Number(operationNumber2), operator);
 
     updateDisplay(`${operationNumber1} ${operator} ${operationNumber2} =`, true);
@@ -78,6 +88,7 @@ equalBtn.addEventListener('click', (e) => {
     operationNumber1 = operationResult;
     operator = null;
     operationNumber2 = null;
+    auxCurrentNum = String(operationNumber1);
 })
 
 const updateDisplay = (string, isSecondary = false, resetDisplay = false) => {
