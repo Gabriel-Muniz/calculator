@@ -58,6 +58,10 @@ operationsContainer.addEventListener('click', (e) => {
 
     if (!auxTarget.value || isActionBtn) return;
 
+    if (operationNumber1 !== null && operator !== null) {
+        equalBtn.dispatchEvent(new Event('click'));
+    }
+
     operator = auxTarget.value;
     updateDisplay('0');
     updateDisplay(`${operationNumber1} ${auxTarget.textContent}`, true);
