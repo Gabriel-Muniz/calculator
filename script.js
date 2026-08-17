@@ -6,27 +6,31 @@ const multiply = (num1, num2) => formatOutput(num1 * num2);
 const divide = (num1, num2) => formatOutput(num1 / num2);
 
 const formatOutput = (num) => {
+    console.log(typeof num);
+    
     return Number.isInteger(num) ? num : num.toFixed(2);
 }
 
-let operationNumber1 = 0;
-let operationNumber2 = null;
-let operator = null;
-let auxCurrentNum = operationNumber1;
+let operationValues = {
+    num1: null,
+    num2: null,
+    operator: null,
+}
+let auxCurrentNum = operationValues.num1;
 
-const operate = (operationNumber1, operationNumber2, operator) => {
+const operate = (operationObj) => {
 
-    switch (operator) {
+    switch (operationObj.operator) {
         case 'add':
-            return add(operationNumber1, operationNumber2);
+            return add(Number(operationObj.num1), Number(operationObj.num2));
             break;
         case 'subtract':
-            return subtract(operationNumber1, operationNumber2);
+            return subtract(Number(operationObj.num1), Number(operationObj.num2));
             break;
         case 'multiply':
-            return multiply(operationNumber1, operationNumber2);
+            return multiply(Number(operationObj.num1), Number(operationObj.num2));
         case 'divide':
-            return divide(operationNumber1, operationNumber2)
+            return divide(Number(operationObj.num1), Number(operationObj.num2))
             break;
         default:
             break;
@@ -53,14 +57,14 @@ digitButtonsContainer.addEventListener('click', (e) => {
         if (auxCurrentNum.includes('.')) return;
     }
 
-    if (operator === null) {
-        operationNumber1 = (operationNumber1) ? operationNumber1 + auxTarget.value : auxTarget.value;
-        updateDisplay(operationNumber1);
-        auxCurrentNum = operationNumber1;
+    if (!operationValues.operator) {
+        operationValues.num1 = (operationValues.num1) ? operationValues.num1 + auxTarget.value : auxTarget.value;
+        updateDisplay(operationValues.num1);
+        auxCurrentNum = operationValues.num1;
     } else {
-        operationNumber2 = (operationNumber2) ? operationNumber2 + auxTarget.value : auxTarget.value;
-        updateDisplay(operationNumber2);
-        auxCurrentNum = operationNumber2;
+        operationValues.num2 = (operationValues.num2) ? operationValues.num2 + auxTarget.value : auxTarget.value;
+        updateDisplay(operationValues.num2);
+        auxCurrentNum = operationValues.num2;
     }
 
 })
@@ -71,19 +75,19 @@ operationsContainer.addEventListener('click', (e) => {
 
     if (!auxTarget.value || isActionBtn) return;
 
-    if (operationNumber1 !== null && operator !== null) {
+    if (operationValues.num1 !== null && operationValues.operator !== null) {
         equalBtn.dispatchEvent(new Event('click'));
     }
 
-    operator = auxTarget.value;
+    operationValues.operator = auxTarget.value;
     updateDisplay('0');
-    updateDisplay(`${operationNumber1} ${auxTarget.textContent}`, true);
+    updateDisplay(`${operationValues.num1} ${operationValues.num2}`, true);
 })
 
 equalBtn.addEventListener('click', (e) => {
-    if (operator === null || operationNumber2 === null) { alert(alo); return };
+    if (operationValues.operator === null || operationValues.num2 === null) { alert(alo); return };
 
-    if (operator === 'divide' && operationNumber2 == 0) {
+    if (operationValues.operator === 'divide' && operationValues.num2 == 0) {
         updateDisplay(`Nuh-uh! You can't divide by 0!`)
 
         setTimeout(() => {
@@ -92,17 +96,17 @@ equalBtn.addEventListener('click', (e) => {
         return;
     };
 
-    let operationResult = operate(Number(operationNumber1), Number(operationNumber2), operator);
+    let operationResult = operate(operationValues);
 
-    updateDisplay(`${operationNumber1} ${operator} ${operationNumber2} =`, true);
+    updateDisplay(`${operationValues.num1} ${operationValues.operator} ${operationValues.num2} =`, true);
     updateDisplay(operationResult)
 
-    console.log(`${operationNumber1} ${operator} ${operationNumber2} = ${operationResult}`)
+    console.log(`${operationValues.num1} ${operationValues.operator} ${operationValues.num2} = ${operationResult}`)
 
-    operationNumber1 = operationResult;
-    operator = null;
-    operationNumber2 = null;
-    auxCurrentNum = String(operationNumber1);
+    operationValues.num1 = operationResult;
+    operationValues.operator = null;
+    operationValues.num2 = null;
+    auxCurrentNum = String(operationValues.num1);
 })
 
 const updateDisplay = (string, isSecondary = false, resetDisplay = false) => {
@@ -123,9 +127,8 @@ const updateDisplay = (string, isSecondary = false, resetDisplay = false) => {
 }
 
 const clearCalc = () => {
-    operationNumber1 = null;
-    operationNumber2 = null;
-    operator = null;
-
+    for (const key in operationValues) {        
+        operationValues[key] = null;
+    }
     updateDisplay('0', false, true);
 }
