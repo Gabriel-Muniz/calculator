@@ -81,7 +81,7 @@ operationsContainer.addEventListener('click', (e) => {
 
     operationValues.operator = auxTarget.value;
     updateDisplay('0');
-    updateDisplay(`${operationValues.num1} ${operationValues.num2}`, true);
+    updateDisplay(`${operationValues.num1} ${auxTarget.textContent}`, true);
 })
 
 equalBtn.addEventListener('click', (e) => {
