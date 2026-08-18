@@ -129,7 +129,7 @@ equalBtn.addEventListener('click', (e) => {
     let operationResult = operate(operationValues);
     operationValues.isResult = true;
 
-    updateDisplay(`${operationValues.num1} ${operationSigns[operationValues.operator]} ${operationValues.num2} =`, true);
+    updateDisplay(`${operationValues.num1} ${OPERATION_SIGN[operationValues.operator]} ${operationValues.num2} =`, true);
     updateDisplay(operationResult)
 
     console.log(`${operationValues.num1} ${operationValues.operator} ${operationValues.num2} = ${operationResult}`)
