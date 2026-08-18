@@ -17,6 +17,12 @@ let operationValues = {
     operator: null,
     isResult: false,
 }
+const OPERATION_SIGN = {
+    'add': '\u{0002B}',
+    'subtract': '\u{02212}',
+    'multiply':'\u{000D7}',
+    'divide': '\u{000F7}',
+}
 let auxCurrentNum = operationValues.num1;
 
 const operate = (operationObj) => {
@@ -123,7 +129,7 @@ equalBtn.addEventListener('click', (e) => {
     let operationResult = operate(operationValues);
     operationValues.isResult = true;
 
-    updateDisplay(`${operationValues.num1} ${operationValues.operator} ${operationValues.num2} =`, true);
+    updateDisplay(`${operationValues.num1} ${operationSigns[operationValues.operator]} ${operationValues.num2} =`, true);
     updateDisplay(operationResult)
 
     console.log(`${operationValues.num1} ${operationValues.operator} ${operationValues.num2} = ${operationResult}`)
