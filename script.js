@@ -48,6 +48,21 @@ clearBtn.addEventListener('click', (e) => {
     clearCalc();
 })
 
+eraseBtn.addEventListener('click', (e) => {
+    if(!auxCurrentNum) return;
+
+    if(operationValues.num2 !== null){
+        operationValues.num2 = (operationValues.num2.length > 1) ? operationValues.num2.slice(0, operationValues.num2.length - 1) : 0;          
+        console.log(operationValues)
+
+        updateDisplay(operationValues.num2);
+    }else{
+        operationValues.num1 = (operationValues.num1.length > 1) ? operationValues.num1.slice(0, operationValues.num1.length - 1) : 0;
+        updateDisplay(operationValues.num1);
+    }
+
+})
+
 digitButtonsContainer.addEventListener('click', (e) => {
     let auxTarget = e.target;
 
