@@ -15,6 +15,7 @@ let operationValues = {
     num1: null,
     num2: null,
     operator: null,
+    isResult: false,
 }
 let auxCurrentNum = operationValues.num1;
 
@@ -52,6 +53,14 @@ digitButtonsContainer.addEventListener('click', (e) => {
 
     if (!auxTarget.value) return;
 
+    console.log('=>',operationValues.isResult, operationValues.operator);
+    
+    if(operationValues.isResult && operationValues.operator === null){
+        operationValues.num1 = null;
+        operationValues.isResult = false;
+        updateDisplay('', true)
+    }
+    
     if (auxTarget.value === '.') {
         console.log(auxCurrentNum);
         if (auxCurrentNum.includes('.')) return;
@@ -97,6 +106,7 @@ equalBtn.addEventListener('click', (e) => {
     };
 
     let operationResult = operate(operationValues);
+    operationValues.isResult = true;
 
     updateDisplay(`${operationValues.num1} ${operationValues.operator} ${operationValues.num2} =`, true);
     updateDisplay(operationResult)
