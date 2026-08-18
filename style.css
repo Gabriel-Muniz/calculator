@@ -90,7 +90,7 @@ body {
 .calculator-display-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-end;
 
     min-height: 100px;
@@ -98,6 +98,7 @@ body {
     border-bottom: 2px solid black;
 }
 .main-display{
+    justify-content: flex-end;
     font-size: 32px;
 }
 .calculator-buttons-container {
