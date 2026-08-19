@@ -163,3 +163,46 @@ const clearCalc = () => {
     }
     updateDisplay('0', false, true);
 }
+
+window.addEventListener('keydown', (e) => {
+    const DIGIT_REGEXP = /[0-9.,]/;
+    const VALID_OPERATORS = ['-', '+', '*', '/']
+    
+    if(DIGIT_REGEXP.test(e.key)) {
+        const digitPressed = document.querySelector(`.digit-btn[value='${(e.key !== ',') ? e.key : '.'}']`);
+        digitPressed.click();        
+    }
+    if(e.key === 'Enter' || e.key === '='){
+        equalBtn.dispatchEvent(new Event('click'));
+        return;
+    }
+    if(e.key === 'Delete'){
+        clearBtn.dispatchEvent(new Event('click'));
+        return;
+    }
+    if(e.key === 'Backspace'){
+        eraseBtn.dispatchEvent(new Event('click'))
+        return;
+    }
+    if(VALID_OPERATORS.find((keyValue) => e.key === keyValue)){
+        console.log(e.key);
+        
+        let auxSelector;
+        switch (e.key) {
+            case '+':
+                auxSelector = 'add';
+                break;
+            case '-':
+                auxSelector = 'subtract';
+                break;
+            case '*':
+                auxSelector = 'multiply';
+                break;
+            default:
+                auxSelector ='divide'
+                break;
+        }
+        let operationPressed = document.querySelector(`.operation-btn[value='${auxSelector}']`)
+        operationPressed.click();
+    }
+})
