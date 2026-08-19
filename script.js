@@ -109,13 +109,20 @@ operationsContainer.addEventListener('click', (e) => {
         equalBtn.dispatchEvent(new Event('click'));
     }
 
+    if(operationValues.num1 === null){
+        operationValues.num1 = 0;
+    }
+    if (operationValues.num2 === null) {
+        operationValues.num2 = 0;
+    }
+
     operationValues.operator = auxTarget.value;
     updateDisplay('0');
     updateDisplay(`${operationValues.num1} ${auxTarget.textContent}`, true);
 })
 
 equalBtn.addEventListener('click', (e) => {
-    if (operationValues.operator === null || operationValues.num2 === null) { alert(alo); return };
+    if (operationValues.operator === null || operationValues.num2 === null)  return;
 
     if (operationValues.operator === 'divide' && operationValues.num2 == 0) {
         updateDisplay(`Nuh-uh! You can't divide by 0!`)
