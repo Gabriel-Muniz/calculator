@@ -12,8 +12,8 @@ const formatOutput = (num) => {
 }
 
 let operationValues = {
-    num1: null,
-    num2: null,
+    num1: 0,
+    num2: 0,
     operator: null,
     isResult: false,
 }
@@ -83,8 +83,7 @@ digitButtonsContainer.addEventListener('click', (e) => {
     }
     
     if (auxTarget.value === '.') {
-        console.log(auxCurrentNum);
-        if (auxCurrentNum.includes('.')) return;
+        if ((`"${auxCurrentNum}"`).includes('.')) return;
     }
 
     if (!operationValues.operator) {
@@ -109,8 +108,8 @@ operationsContainer.addEventListener('click', (e) => {
         equalBtn.dispatchEvent(new Event('click'));
     }
 
-    if(operationValues.num1 === null){
-        operationValues.num1 = 0;
+    if(operationValues.num1 !== null){
+        auxCurrentNum = operationValues;
     }
     if (operationValues.num2 === null) {
         operationValues.num2 = 0;
@@ -151,6 +150,7 @@ const updateDisplay = (string, isSecondary = false, resetDisplay = false) => {
     const outDisplay = document.querySelector('.main-display');
     const outSecondaryDisplay = document.querySelector('.secondary-display');
 
+    string = (string.toString().charAt(0) === '.') ? '0' + string : string; 
 
     if (resetDisplay) {
         outSecondaryDisplay.textContent = '';
