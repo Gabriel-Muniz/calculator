@@ -95,6 +95,13 @@ button{
     font-size: 22px;
     border: none;
     font-weight: bold;
+    border-radius: 2px;
+}
+button:hover{
+    cursor: pointer;
+}
+button:active{
+    filter: brightness(90%);
 }
 .calculator-display-container {
     display: flex;
